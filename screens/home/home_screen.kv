@@ -1,0 +1,100 @@
+<HomeScreen>:
+    md_bg_color: app.bg_color
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: "24dp"
+        spacing: "12dp"
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: "48dp"
+
+            MDLabel:
+                text: "🏠 Home Touch UI"
+                font_style: "H5"
+                halign: "left"
+                theme_text_color: "Custom"
+                text_color: app.text_color
+
+            MDIconButton:
+                icon: "cog"
+                pos_hint: {"center_y": 0.5}
+                icon_color: app.accent_color
+                on_release: app.switch_screen("settings")
+
+        Widget:
+
+        MDBoxLayout:
+            orientation: "vertical"
+            spacing: "20dp"
+            size_hint_y: None
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5}
+            padding: "0dp", "10dp"
+
+            MDCard:
+                orientation: "vertical"
+                size_hint: 1, None
+                height: "80dp"
+                ripple_behavior: True
+                on_release: app.switch_screen("alarm")
+                md_bg_color: app.button_color
+
+                MDLabel:
+                    text: "⏰  Alarm"
+                    halign: "center"
+                    valign: "middle"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    font_style: "H6"
+
+            MDCard:
+                orientation: "vertical"
+                size_hint: 1, None
+                height: "80dp"
+                ripple_behavior: True
+                on_release: app.switch_screen("notes")
+                md_bg_color: app.button_color
+
+                MDLabel:
+                    text: "📝  Notes"
+                    halign: "center"
+                    valign: "middle"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    font_style: "H6"
+
+            MDCard:
+                orientation: "vertical"
+                size_hint: 1, None
+                height: "80dp"
+                ripple_behavior: True
+                on_release: app.switch_screen("memories")
+                md_bg_color: app.button_color
+
+                MDLabel:
+                    text: "📸  Memories"
+                    halign: "center"
+                    valign: "middle"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    font_style: "H6"
+
+            MDCard:
+                orientation: "vertical"
+                size_hint: 1, None
+                height: "80dp"
+                ripple_behavior: True
+                on_release: app.switch_screen("lights")
+                md_bg_color: app.button_color
+
+                MDLabel:
+                    text: "💡  Lights"
+                    halign: "center"
+                    valign: "middle"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    font_style: "H6"
+
+        Widget:

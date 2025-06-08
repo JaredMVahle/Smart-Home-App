@@ -1,0 +1,99 @@
+<SettingsScreen>:
+    md_bg_color: app.bg_color
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: "24dp"
+        spacing: "12dp"
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: "48dp"
+
+            MDLabel:
+                text: "⚙️ Settings"
+                font_style: "H5"
+                halign: "left"
+                theme_text_color: "Custom"
+                text_color: app.text_color
+
+            MDIconButton:
+                icon: "arrow-left"
+                pos_hint: {"center_y": 0.5}
+                icon_color: app.accent_color
+                on_release: app.switch_screen("home")
+
+        MDSeparator:
+            height: "1dp"
+
+        Widget:
+
+        MDLabel:
+            text: "🎨 Choose Theme"
+            font_style: "H6"
+            halign: "left"
+            theme_text_color: "Custom"
+            text_color: app.text_color
+            size_hint_y: None
+            height: "32dp"
+
+        ScrollView:
+            MDGridLayout:
+                cols: 5
+                adaptive_height: True
+                padding: "16dp"
+                spacing: "16dp"
+                size_hint_x: None
+                width: self.minimum_width
+
+                MDCard:
+                    size_hint: None, None
+                    size: "120dp", "180dp"
+                    radius: [12]
+                    ripple_behavior: True
+                    on_release: app.set_theme("bluegray")
+
+                    FitImage:
+                        source: "assets/themes/ColorTheme1.png"
+
+                MDCard:
+                    size_hint: None, None
+                    size: "120dp", "180dp"
+                    radius: [12]
+                    ripple_behavior: True
+                    on_release: app.set_theme("theme2")
+
+                    FitImage:
+                        source: "assets/themes/ColorTheme2.png"
+
+                MDCard:
+                    size_hint: None, None
+                    size: "120dp", "180dp"
+                    radius: [12]
+                    ripple_behavior: True
+                    on_release: app.set_theme("theme3")
+
+                    FitImage:
+                        source: "assets/themes/ColorTheme3.png"
+
+                MDCard:
+                    size_hint: None, None
+                    size: "120dp", "180dp"
+                    radius: [12]
+                    ripple_behavior: True
+                    on_release: app.set_theme("theme4")
+
+                    FitImage:
+                        source: "assets/themes/ColorTheme4.png"
+
+                MDCard:
+                    size_hint: None, None
+                    size: "120dp", "180dp"
+                    radius: [12]
+                    ripple_behavior: True
+                    on_release: app.set_theme("theme5")
+
+                    FitImage:
+                        source: "assets/themes/ColorTheme5.png"
+
+        Widget:

@@ -1,0 +1,32 @@
+<MemoriesScreen>:
+    md_bg_color: app.bg_color
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        padding: "24dp"
+        spacing: "12dp"
+
+        MDBoxLayout:
+            size_hint_y: None
+            height: "48dp"
+
+            MDLabel:
+                text: "📸 Memories"
+                font_style: "H5"
+                halign: "left"
+                theme_text_color: "Custom"
+                text_color: app.text_color
+
+            MDIconButton:
+                icon: "arrow-left"
+                pos_hint: {"center_y": 0.5}
+                icon_color: app.accent_color
+                on_release: app.switch_screen("home")
+
+        MDLabel:
+            text: "You haven't added any memories yet."
+            halign: "center"
+            theme_text_color: "Custom"
+            text_color: app.text_color
+
+        Widget:
