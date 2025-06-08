@@ -1,5 +1,6 @@
 # Imports section
 import os
+
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
@@ -14,6 +15,7 @@ from screens.home.home_screen import HomeScreen
 from screens.alarm.alarm_screen import AlarmScreen
 from screens.memories.memories_screen import MemoriesScreen
 from screens.notes.notes_screen import NotesScreen
+from screens.lights.lights_screen import LightsScreen
 
 #Function/Class Section
 class TouchUIApp(MDApp):
@@ -41,6 +43,7 @@ class TouchUIApp(MDApp):
             Builder.load_file(os.path.join(base_dir, "screens/alarm/alarm_screen.kv"))
             Builder.load_file(os.path.join(base_dir, "screens/memories/memories_screen.kv"))
             Builder.load_file(os.path.join(base_dir, "screens/notes/notes_screen.kv"))
+            Builder.load_file(os.path.join(base_dir, "screens/lights/lights_screen.kv"))
 
             debug_log("[BUILD] Initializing screens")
             self.sm = ScreenManager()
@@ -49,6 +52,7 @@ class TouchUIApp(MDApp):
             self.sm.add_widget(AlarmScreen(name="alarm"))
             self.sm.add_widget(MemoriesScreen(name="memories"))
             self.sm.add_widget(NotesScreen(name="notes"))
+            self.sm.add_widget(LightsScreen(name="lights"))
 
             debug_log("[BUILD] Build complete, returning root")
             return self.sm
