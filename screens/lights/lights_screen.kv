@@ -9,16 +9,14 @@
         MDLabel:
             text: "💡 Select a Room"
             halign: "center"
-            font_style: "H5"
-            size_hint_y: None
-            height: self.texture_size[1]
+            bold: True
+            font_size: "18sp"
 
         MDBoxLayout:
             orientation: "horizontal"
+            spacing: "12dp"
             size_hint_y: None
             height: "48dp"
-            spacing: "12dp"
-            pos_hint: {"center_x": 0.5}
 
             MDButton:
                 text: "Bedroom"
@@ -35,8 +33,8 @@
                 style: "elevated"
                 on_release: root.handle_room_selection("Kitchen")
 
-        # Conditional Light Controls
         BoxLayout:
+            id: controls
             orientation: "vertical"
             spacing: "16dp"
             padding: "12dp"
@@ -46,46 +44,48 @@
             MDLabel:
                 text: f"Controls for {root.selected_room}"
                 halign: "center"
-                font_style: "H6"
+                bold: True
+                font_size: "16sp"
 
-            # Light On/Off Switch
             MDBoxLayout:
                 orientation: "horizontal"
                 spacing: "12dp"
+                size_hint_y: None
+                height: "48dp"
+
                 MDLabel:
-                    text: "Lights On/Off"
+                    text: "Lights"
                     halign: "left"
+                    font_size: "16sp"
+                    bold: True
+
                 MDSwitch:
-                    pos_hint: {"center_y": 0.5}
+                    pos_hint: {"center_y": .5}
                     active: root.light_on
                     on_active: root.toggle_light(self.active)
 
-            # Color Control
             MDLabel:
                 text: "🎨 Hue Selector"
                 halign: "center"
-                font_style: "Subtitle1"
+                font_size: "15sp"
 
             MDSlider:
+                id: hue_slider
                 min: 0
                 max: 360
                 value: root.hue
                 on_value: root.on_color_change(self, self.value)
                 hint: True
-                color: [1, 0, 0, 1]  # red start
-                background_gradient_color: [(1, 0, 0, 1), (1, 1, 0, 1), (0, 1, 0, 1), (0, 1, 1, 1), (0, 0, 1, 1), (1, 0, 1, 1)]
 
-            # Brightness Control
             MDLabel:
                 text: "🔆 Brightness"
                 halign: "center"
-                font_style: "Subtitle1"
+                font_size: "15sp"
 
             MDSlider:
+                id: bright_slider
                 min: 0
                 max: 100
                 value: root.brightness
                 on_value: root.on_brightness_change(self, self.value)
                 hint: True
-                color: [1, 1, 0, 1]
-                background_gradient_color: [(0, 0, 0, 1), (1, 1, 0, 1)]

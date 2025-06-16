@@ -12,7 +12,8 @@
 
             MDLabel:
                 text: "⚙️ Settings"
-                font_style: "H5"
+                font_size: "20sp"
+                bold: True
                 halign: "left"
                 theme_text_color: "Custom"
                 text_color: app.text_color
@@ -23,12 +24,21 @@
                 icon_color: app.accent_color
                 on_release: app.switch_screen("home")
 
-        MDSeparator:
+        # Replaces deprecated MDSeparator
+        Widget:
+            size_hint_y: None
             height: "1dp"
+            canvas.before:
+                Color:
+                    rgba: app.accent_color if hasattr(app, "accent_color") else (0.5, 0.5, 0.5, 1)
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
 
         MDLabel:
             text: "🎨 Choose Theme"
-            font_style: "H6"
+            font_size: "16sp"
+            bold: True
             theme_text_color: "Custom"
             text_color: app.text_color
             size_hint_y: None
@@ -49,7 +59,8 @@
 
         MDLabel:
             text: "⚙️ Preferences"
-            font_style: "H6"
+            font_size: "16sp"
+            bold: True
             theme_text_color: "Custom"
             text_color: app.text_color
             size_hint_y: None
@@ -64,7 +75,7 @@
 
             MDLabel:
                 text: "🪵 Enable Logging"
-                font_style: "Subtitle1"
+                font_size: "14sp"
                 theme_text_color: "Custom"
                 text_color: app.text_color
                 halign: "left"

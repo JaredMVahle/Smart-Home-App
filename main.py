@@ -10,7 +10,7 @@ from utils.theme_utils import apply_theme_to_app
 from utils.log_utils import debug_log
 from utils.file_utils import load_json, get_app_data_path
 
-from screens.settings.settings_screen import THEMES,  SettingsScreen
+from screens.settings.settings_screen import THEMES, SettingsScreen
 from screens.home.home_screen import HomeScreen
 from screens.alarm.alarm_screen import AlarmScreen
 from screens.memories.memories_screen import MemoriesScreen

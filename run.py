@@ -1,12 +1,14 @@
-# run.py
 import sys
 import os
 from datetime import datetime
+from pathlib import Path
 
-LOG_DIR = os.path.expanduser("~/.smart_home_app/logs")
-os.makedirs(LOG_DIR, exist_ok=True)
-log_file = os.path.join(LOG_DIR, f"startup_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log")
+# Define base directory relative to this file
+BASE_DIR = Path(__file__).resolve().parent
+LOG_DIR = BASE_DIR / ".smart_home_app" / "logs"
+LOG_DIR.mkdir(parents=True, exist_ok=True)
 
+log_file = LOG_DIR / f"startup_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.log"
 
 def log(msg):
     print(msg)
