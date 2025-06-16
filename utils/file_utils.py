@@ -2,6 +2,10 @@ import os
 import json
 from pathlib import Path
 
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+PREFS_PATH = os.path.join(PROJECT_ROOT, ".smart_home_app", "user_prefs.json")
+LOG_DIR = os.path.join(PROJECT_ROOT, ".smart_home_app", "logs")
+
 def ensure_directory(path: str) -> None:
     """
     Ensure the directory exists for the given path.

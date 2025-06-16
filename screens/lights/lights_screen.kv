@@ -27,33 +27,51 @@
         MDGridLayout:
             cols: 3
             spacing: "16dp"
-            padding: "24dp", 0
+            padding: "0dp", "8dp"
             size_hint_y: None
-            height: "56dp"
-            pos_hint: {"center_x": 0.5}
+            height: self.minimum_height
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
             MDButton:
+                line_color: app.text_color
+                theme_text_color: "Custom"
+                text_color: app.text_color
+                theme_text_color: "Custom"
                 text: "Bedroom"
                 md_bg_color: root.selected_bg_color if root.selected_room == "Bedroom" else app.bg_color
                 text_color: app.text_color
-                size_hint_x: None
-                width: "100dp"
+                size_hint: None, None
+                size: "110dp", "48dp"
+                radius: [24]
+                pos_hint: {"center_x": 0.5}
                 on_release: root.handle_room_selection("Bedroom")
 
             MDButton:
+                line_color: app.text_color
+                theme_text_color: "Custom"
+                text_color: app.text_color
+                theme_text_color: "Custom"
                 text: "Living Room"
                 md_bg_color: root.selected_bg_color if root.selected_room == "Living Room" else app.bg_color
                 text_color: app.text_color
-                size_hint_x: None
-                width: "100dp"
+                size_hint: None, None
+                size: "110dp", "48dp"
+                radius: [24]
+                pos_hint: {"center_x": 0.5}
                 on_release: root.handle_room_selection("Living Room")
 
             MDButton:
+                line_color: app.text_color
+                theme_text_color: "Custom"
+                text_color: app.text_color
+                theme_text_color: "Custom"
                 text: "Kitchen"
                 md_bg_color: root.selected_bg_color if root.selected_room == "Kitchen" else app.bg_color
                 text_color: app.text_color
-                size_hint_x: None
-                width: "100dp"
+                size_hint: None, None
+                size: "110dp", "48dp"
+                radius: [24]
+                pos_hint: {"center_x": 0.5}
                 on_release: root.handle_room_selection("Kitchen")
 
         MDLabel:

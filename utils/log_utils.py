@@ -1,4 +1,5 @@
 import os
+import time
 from datetime import datetime
 from utils.file_utils import ensure_directory, get_app_data_path
 
@@ -56,3 +57,11 @@ def disable_logging():
 
 def is_logging_enabled() -> bool:
     return LOGGING_ENABLED
+
+def clean_old_logs(log_dir, max_age_days=7):
+    now = time.time()
+    for filename in os.listdir(log_dir):
+        filepath = os.path.join(log_dir, filename)
+        if os.path.isfile(filepath):
+            if now - os.path.getmtime(filepath) > max_age_days * 86400:
+                os.remove(filepath)
