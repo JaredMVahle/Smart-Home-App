@@ -1,5 +1,6 @@
 from kivymd.uix.screen import MDScreen
-from kivy.properties import StringProperty, BooleanProperty, NumericProperty
+from kivy.properties import StringProperty, BooleanProperty, NumericProperty, ListProperty
+from utils.style_constants import SELECTED_BUTTON_BG
 
 
 class LightsScreen(MDScreen):
@@ -7,6 +8,7 @@ class LightsScreen(MDScreen):
     light_on = BooleanProperty(False)
     brightness = NumericProperty(50)
     hue = NumericProperty(0)
+    selected_bg_color = ListProperty(SELECTED_BUTTON_BG)
 
     def handle_room_selection(self, room):
         self.selected_room = room

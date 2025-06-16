@@ -24,8 +24,8 @@
                 icon_color: app.accent_color
                 on_release: app.switch_screen("home")
 
-        MDBoxLayout:
-            orientation: "horizontal"
+        MDGridLayout:
+            cols: 3
             spacing: "16dp"
             padding: "24dp", 0
             size_hint_y: None
@@ -34,21 +34,24 @@
 
             MDButton:
                 text: "Bedroom"
-                variant: "outlined"
+                md_bg_color: root.selected_bg_color if root.selected_room == "Bedroom" else app.bg_color
+                text_color: app.text_color
                 size_hint_x: None
                 width: "100dp"
                 on_release: root.handle_room_selection("Bedroom")
 
             MDButton:
                 text: "Living Room"
-                variant: "outlined"
+                md_bg_color: root.selected_bg_color if root.selected_room == "Living Room" else app.bg_color
+                text_color: app.text_color
                 size_hint_x: None
                 width: "100dp"
                 on_release: root.handle_room_selection("Living Room")
 
             MDButton:
                 text: "Kitchen"
-                variant: "outlined"
+                md_bg_color: root.selected_bg_color if root.selected_room == "Kitchen" else app.bg_color
+                text_color: app.text_color
                 size_hint_x: None
                 width: "100dp"
                 on_release: root.handle_room_selection("Kitchen")
