@@ -3,89 +3,76 @@
 
     MDBoxLayout:
         orientation: "vertical"
-        padding: "24dp"
+        padding: "16dp"
         spacing: "16dp"
+
+        MDTopAppBar:
+            title: "Lights Control"
+            elevation: 4
+            left_action_items: [["arrow-left", lambda x: app.switch_screen("home")]]
 
         MDLabel:
             text: "💡 Select a Room"
             halign: "center"
-            bold: True
-            font_size: "18sp"
+            theme_text_color: "Primary"
 
         MDBoxLayout:
             orientation: "horizontal"
             spacing: "12dp"
             size_hint_y: None
             height: "48dp"
+            padding: "0dp", "0dp", "0dp", "8dp"
 
             MDButton:
                 text: "Bedroom"
-                style: "elevated"
+                variant: "outlined"
                 on_release: root.handle_room_selection("Bedroom")
 
             MDButton:
                 text: "Living Room"
-                style: "elevated"
+                variant: "outlined"
                 on_release: root.handle_room_selection("Living Room")
 
             MDButton:
                 text: "Kitchen"
-                style: "elevated"
+                variant: "outlined"
                 on_release: root.handle_room_selection("Kitchen")
 
-        BoxLayout:
-            id: controls
+        MDLabel:
+            text: "Selected Room: [b]{}[/b]".format(root.selected_room)
+            markup: True
+            halign: "center"
+            theme_text_color: "Primary"
+
+        MDBoxLayout:
             orientation: "vertical"
             spacing: "16dp"
-            padding: "12dp"
-            opacity: 1 if root.selected_room else 0
-            disabled: not root.selected_room
 
             MDLabel:
-                text: f"Controls for {root.selected_room}"
+                text: "Light Power"
                 halign: "center"
-                bold: True
-                font_size: "16sp"
 
-            MDBoxLayout:
-                orientation: "horizontal"
-                spacing: "12dp"
-                size_hint_y: None
-                height: "48dp"
-
-                MDLabel:
-                    text: "Lights"
-                    halign: "left"
-                    font_size: "16sp"
-                    bold: True
-
-                MDSwitch:
-                    pos_hint: {"center_y": .5}
-                    active: root.light_on
-                    on_active: root.toggle_light(self.active)
+            MDSwitch:
+                pos_hint: {"center_x": 0.5}
+                active: root.light_on
+                on_active: root.toggle_light(*args)
 
             MDLabel:
-                text: "🎨 Hue Selector"
+                text: "Brightness: {}%".format(int(root.brightness))
                 halign: "center"
-                font_size: "15sp"
 
             MDSlider:
-                id: hue_slider
-                min: 0
-                max: 360
-                value: root.hue
-                on_value: root.on_color_change(self, self.value)
-                hint: True
-
-            MDLabel:
-                text: "🔆 Brightness"
-                halign: "center"
-                font_size: "15sp"
-
-            MDSlider:
-                id: bright_slider
                 min: 0
                 max: 100
                 value: root.brightness
-                on_value: root.on_brightness_change(self, self.value)
-                hint: True
+                on_value: root.on_brightness_change(*args)
+
+            MDLabel:
+                text: "Hue: {}°".format(int(root.hue))
+                halign: "center"
+
+            MDSlider:
+                min: 0
+                max: 360
+                value: root.hue
+                on_value: root.on_color_change(*args)
