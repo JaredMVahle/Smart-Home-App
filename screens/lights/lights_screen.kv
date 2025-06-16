@@ -1,56 +1,73 @@
 <LightsScreen>:
-    name: "lights"
+    md_bg_color: app.bg_color
 
     MDBoxLayout:
-        orientation: "vertical"
-        padding: "16dp"
-        spacing: "16dp"
+        orientation: 'vertical'
+        padding: "24dp"
+        spacing: "12dp"
 
-        MDTopAppBar:
-            title: "Lights Control"
-            elevation: 4
-            left_action_items: [["arrow-left", lambda x: app.switch_screen("home")]]
+        MDBoxLayout:
+            size_hint_y: None
+            height: "48dp"
 
-        MDLabel:
-            text: "💡 Select a Room"
-            halign: "center"
-            theme_text_color: "Primary"
+            MDLabel:
+                text: "Light Control"
+                font_size: "20sp"
+                bold: True
+                halign: "left"
+                theme_text_color: "Custom"
+                text_color: app.text_color
+
+            MDIconButton:
+                icon: "arrow-left"
+                pos_hint: {"center_y": 0.5}
+                icon_color: app.accent_color
+                on_release: app.switch_screen("home")
 
         MDBoxLayout:
             orientation: "horizontal"
-            spacing: "12dp"
+            spacing: "16dp"
+            padding: "24dp", 0
             size_hint_y: None
-            height: "48dp"
-            padding: "0dp", "0dp", "0dp", "8dp"
+            height: "56dp"
+            pos_hint: {"center_x": 0.5}
 
             MDButton:
                 text: "Bedroom"
                 variant: "outlined"
+                size_hint_x: None
+                width: "100dp"
                 on_release: root.handle_room_selection("Bedroom")
 
             MDButton:
                 text: "Living Room"
                 variant: "outlined"
+                size_hint_x: None
+                width: "100dp"
                 on_release: root.handle_room_selection("Living Room")
 
             MDButton:
                 text: "Kitchen"
                 variant: "outlined"
+                size_hint_x: None
+                width: "100dp"
                 on_release: root.handle_room_selection("Kitchen")
 
         MDLabel:
             text: "Selected Room: [b]{}[/b]".format(root.selected_room)
             markup: True
             halign: "center"
-            theme_text_color: "Primary"
+            text_color: app.text_color
 
         MDBoxLayout:
             orientation: "vertical"
             spacing: "16dp"
+            padding: "16dp"
 
             MDLabel:
                 text: "Light Power"
                 halign: "center"
+                text_color: app.text_color
 
             MDSwitch:
                 pos_hint: {"center_x": 0.5}
@@ -60,6 +77,7 @@
             MDLabel:
                 text: "Brightness: {}%".format(int(root.brightness))
                 halign: "center"
+                text_color: app.text_color
 
             MDSlider:
                 min: 0
@@ -70,6 +88,7 @@
             MDLabel:
                 text: "Hue: {}°".format(int(root.hue))
                 halign: "center"
+                text_color: app.text_color
 
             MDSlider:
                 min: 0
