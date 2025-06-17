@@ -19,7 +19,7 @@
                 text_color: app.text_color
 
             MDIconButton:
-                icon: "arrow-left"
+                icon: "home"
                 pos_hint: {"center_y": 0.5}
                 icon_color: app.accent_color
                 on_release: app.switch_screen("home")
@@ -36,11 +36,12 @@
                     size: self.size
 
         MDLabel:
-            text: "🎨 Choose Theme"
+            text: "Choose Theme"
             font_size: "16sp"
             bold: True
             theme_text_color: "Custom"
             text_color: app.text_color
+            color: self.text_color
             size_hint_y: None
             height: self.texture_size[1]
 
@@ -58,11 +59,12 @@
                 orientation: "horizontal"
 
         MDLabel:
-            text: "⚙️ Preferences"
+            text: "Preferences"
             font_size: "16sp"
             bold: True
             theme_text_color: "Custom"
             text_color: app.text_color
+            color: self.text_color
             size_hint_y: None
             height: self.texture_size[1]
             padding: 0, "12dp"
@@ -78,6 +80,7 @@
                 font_size: "14sp"
                 theme_text_color: "Custom"
                 text_color: app.text_color
+                color: self.text_color
                 halign: "left"
 
             MDSwitch:

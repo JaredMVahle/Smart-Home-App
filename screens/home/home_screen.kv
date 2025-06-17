@@ -1,4 +1,5 @@
 <HomeScreen>:
+    name: "home"
     md_bg_color: app.bg_color
 
     MDBoxLayout:
@@ -49,7 +50,8 @@
                     bold: True
                     font_size: "16sp"
                     theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1
+                    text_color: app.text_color
+                    color: self.text_color
 
             MDCard:
                 orientation: "vertical"
@@ -60,13 +62,14 @@
                 md_bg_color: app.button_color
 
                 MDLabel:
-                    text: "📝  Notes"
+                    text: "Notes"
                     halign: "center"
                     valign: "middle"
                     bold: True
                     font_size: "16sp"
                     theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1
+                    text_color: app.text_color
+                    color: self.text_color
 
             MDCard:
                 orientation: "vertical"
@@ -83,7 +86,8 @@
                     bold: True
                     font_size: "16sp"
                     theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1
+                    text_color: app.text_color
+                    color: self.text_color
 
             MDCard:
                 orientation: "vertical"
@@ -100,6 +104,7 @@
                     bold: True
                     font_size: "16sp"
                     theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1
+                    text_color: app.text_color
+                    color: self.text_color
 
         Widget:
