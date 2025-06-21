@@ -2,6 +2,10 @@ import os
 import json
 from pathlib import Path
 
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+PREFS_PATH = os.path.join(PROJECT_ROOT, ".smart_home_app", "user_prefs.json")
+LOG_DIR = os.path.join(PROJECT_ROOT, ".smart_home_app", "logs")
+
 def ensure_directory(path: str) -> None:
     """
     Ensure the directory exists for the given path.
@@ -107,13 +111,14 @@ def write_text(path: str, text: str) -> bool:
 
 def get_app_data_path(filename: str) -> str:
     """
-    Get the recommended path for saving user data/configs in a cross-platform way.
+    Get the recommended path for saving user data/configs relative to the project root.
 
     Parameters:
     - filename (str): The file name (not full path).
 
     Returns:
-    - str: Absolute path in the user’s home directory or config folder.
+    - str: Absolute path inside the project’s .smart_home_app directory.
     """
-    base = Path.home() / ".smart_home_app"
+    base = Path(__file__).resolve().parent.parent / ".smart_home_app"
+    base.mkdir(parents=True, exist_ok=True)
     return str(base / filename)

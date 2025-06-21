@@ -1,8 +1,9 @@
 <HomeScreen>:
+    name: "home"
     md_bg_color: app.bg_color
 
     MDBoxLayout:
-        orientation: 'vertical'
+        orientation: "vertical"
         padding: "24dp"
         spacing: "12dp"
 
@@ -12,8 +13,9 @@
 
             MDLabel:
                 text: "🏠 Home Touch UI"
-                font_style: "H5"
                 halign: "left"
+                bold: True
+                font_size: "18sp"
                 theme_text_color: "Custom"
                 text_color: app.text_color
 
@@ -45,9 +47,11 @@
                     text: "⏰  Alarm"
                     halign: "center"
                     valign: "middle"
+                    bold: True
+                    font_size: "16sp"
                     theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1
-                    font_style: "H6"
+                    text_color: app.text_color
+                    color: self.text_color
 
             MDCard:
                 orientation: "vertical"
@@ -58,12 +62,14 @@
                 md_bg_color: app.button_color
 
                 MDLabel:
-                    text: "📝  Notes"
+                    text: "Notes"
                     halign: "center"
                     valign: "middle"
+                    bold: True
+                    font_size: "16sp"
                     theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1
-                    font_style: "H6"
+                    text_color: app.text_color
+                    color: self.text_color
 
             MDCard:
                 orientation: "vertical"
@@ -77,9 +83,11 @@
                     text: "📸  Memories"
                     halign: "center"
                     valign: "middle"
+                    bold: True
+                    font_size: "16sp"
                     theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1
-                    font_style: "H6"
+                    text_color: app.text_color
+                    color: self.text_color
 
             MDCard:
                 orientation: "vertical"
@@ -93,8 +101,10 @@
                     text: "💡  Lights"
                     halign: "center"
                     valign: "middle"
+                    bold: True
+                    font_size: "16sp"
                     theme_text_color: "Custom"
-                    text_color: 1, 1, 1, 1
-                    font_style: "H6"
+                    text_color: app.text_color
+                    color: self.text_color
 
         Widget:

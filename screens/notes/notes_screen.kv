@@ -12,13 +12,14 @@
 
             MDLabel:
                 text: "📝 Notes"
-                font_style: "H5"
+                font_size: "20sp"
+                bold: True
                 halign: "left"
                 theme_text_color: "Custom"
                 text_color: app.text_color
 
             MDIconButton:
-                icon: "arrow-left"
+                icon: "home"
                 pos_hint: {"center_y": 0.5}
                 icon_color: app.accent_color
                 on_release: app.switch_screen("home")

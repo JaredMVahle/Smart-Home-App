@@ -1,21 +1,28 @@
 # Imports section
 import os
+
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
 from kivy.properties import ColorProperty
 
 from utils.theme_utils import apply_theme_to_app
-from utils.log_utils import debug_log
+from utils.log_utils import debug_log, clean_old_logs
 from utils.file_utils import load_json, get_app_data_path
 
-from screens.settings.settings_screen import THEMES,  SettingsScreen
+from screens.settings.settings_screen import THEMES, SettingsScreen
 from screens.home.home_screen import HomeScreen
 from screens.alarm.alarm_screen import AlarmScreen
 from screens.memories.memories_screen import MemoriesScreen
 from screens.notes.notes_screen import NotesScreen
+from screens.lights.lights_screen import LightsScreen
 
-#Function/Class Section
+from utils.file_utils import LOG_DIR, PREFS_PATH
+
+# Logs stored locally in project
+os.makedirs(LOG_DIR, exist_ok=True)
+
+# Function/Class Section
 class TouchUIApp(MDApp):
     bg_color = ColorProperty()
     button_color = ColorProperty()
@@ -26,13 +33,15 @@ class TouchUIApp(MDApp):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
         pref_path = get_app_data_path("user_prefs.json")
-        prefs = load_json(pref_path, fallback={})
+        prefs = load_json(PREFS_PATH, fallback={})
         theme_name = prefs.get("theme", "default")
         theme = THEMES.get(theme_name, THEMES["default"])
         apply_theme_to_app(self, theme)
 
     def build(self):
         try:
+            clean_old_logs(LOG_DIR, max_age_days=7)
+
             base_dir = os.path.dirname(__file__)
             debug_log("[BUILD] Loading KV files")
 
@@ -41,6 +50,7 @@ class TouchUIApp(MDApp):
             Builder.load_file(os.path.join(base_dir, "screens/alarm/alarm_screen.kv"))
             Builder.load_file(os.path.join(base_dir, "screens/memories/memories_screen.kv"))
             Builder.load_file(os.path.join(base_dir, "screens/notes/notes_screen.kv"))
+            Builder.load_file(os.path.join(base_dir, "screens/lights/lights_screen.kv"))
 
             debug_log("[BUILD] Initializing screens")
             self.sm = ScreenManager()
@@ -49,6 +59,7 @@ class TouchUIApp(MDApp):
             self.sm.add_widget(AlarmScreen(name="alarm"))
             self.sm.add_widget(MemoriesScreen(name="memories"))
             self.sm.add_widget(NotesScreen(name="notes"))
+            self.sm.add_widget(LightsScreen(name="lights"))
 
             debug_log("[BUILD] Build complete, returning root")
             return self.sm

@@ -16,87 +16,20 @@ from utils.log_utils import (
 )
 from utils.file_utils import save_json, load_json, get_app_data_path
 
-
 PREF_PATH = get_app_data_path("user_prefs.json")
 
 THEMES = {
-    "default": {
-        "name": "default",
-        "bg_color": "#F0F4F8",
-        "button_color": "#3B6978",
-        "text_color": "#1E2022",
-        "accent_color": "#00BFFF",
-    },
-    "pikachu": {
-        "name": "pikachu",
-        "bg_color": "#FFF176",
-        "button_color": "#F57C00",
-        "text_color": "#212121",
-        "accent_color": "#FFEB3B",
-    },
-    "charizard": {
-        "name": "charizard",
-        "bg_color": "#FF7043",
-        "button_color": "#BF360C",
-        "text_color": "#FFFFFF",
-        "accent_color": "#F4511E",
-    },
-    "bulbasaur": {
-        "name": "bulbasaur",
-        "bg_color": "#A5D6A7",
-        "button_color": "#66BB6A",
-        "text_color": "#1B5E20",
-        "accent_color": "#388E3C",
-    },
-    "squirtle": {
-        "name": "squirtle",
-        "bg_color": "#81D4FA",
-        "button_color": "#0288D1",
-        "text_color": "#0D47A1",
-        "accent_color": "#00ACC1",
-    },
-    "mewtwo": {
-        "name": "mewtwo",
-        "bg_color": "#CE93D8",
-        "button_color": "#7B1FA2",
-        "text_color": "#311B92",
-        "accent_color": "#9575CD",
-    },
-    "umbreon": {
-        "name": "umbreon",
-        "bg_color": "#2F323F",
-        "button_color": "#64647C",
-        "text_color": "#FAFAFA",
-        "accent_color": "#FFD700",
-    },
-    "sylveon": {
-        "name": "sylveon",
-        "bg_color": "#FDE1F3",
-        "button_color": "#9CC2E5",
-        "text_color": "#6E4D6A",
-        "accent_color": "#FF84A1",
-    },
-    "lucario": {
-        "name": "lucario",
-        "bg_color": "#2B3C50",
-        "button_color": "#AAB7BD",
-        "text_color": "#FFFFFF",
-        "accent_color": "#519ABA",
-    },
-    "garchomp": {
-        "name": "garchomp",
-        "bg_color": "#4C3F91",
-        "button_color": "#E15F41",
-        "text_color": "#FFFFFF",
-        "accent_color": "#FDB833",
-    },
-    "venusaur": {
-        "name": "venusaur",
-        "bg_color": "#9BCCB7",
-        "button_color": "#E06D6D",
-        "text_color": "#2A3B36",
-        "accent_color": "#71B48D",
-    },
+    "default": {"name": "default", "bg_color": "#F0F4F8", "button_color": "#3B6978", "text_color": "#1E2022", "accent_color": "#00BFFF"},
+    "pikachu": {"name": "pikachu", "bg_color": "#FFF176", "button_color": "#F57C00", "text_color": "#212121", "accent_color": "#FFEB3B"},
+    "charizard": {"name": "charizard", "bg_color": "#FF7043", "button_color": "#BF360C", "text_color": "#FFFFFF", "accent_color": "#F4511E"},
+    "bulbasaur": {"name": "bulbasaur", "bg_color": "#A5D6A7", "button_color": "#66BB6A", "text_color": "#1B5E20", "accent_color": "#388E3C"},
+    "squirtle": {"name": "squirtle", "bg_color": "#81D4FA", "button_color": "#0288D1", "text_color": "#0D47A1", "accent_color": "#00ACC1"},
+    "mewtwo": {"name": "mewtwo", "bg_color": "#CE93D8", "button_color": "#7B1FA2", "text_color": "#311B92", "accent_color": "#9575CD"},
+    "umbreon": {"name": "umbreon", "bg_color": "#2F323F", "button_color": "#64647C", "text_color": "#FAFAFA", "accent_color": "#FFD700"},
+    "sylveon": {"name": "sylveon", "bg_color": "#FDE1F3", "button_color": "#9CC2E5", "text_color": "#6E4D6A", "accent_color": "#FF84A1"},
+    "lucario": {"name": "lucario", "bg_color": "#2B3C50", "button_color": "#AAB7BD", "text_color": "#FFFFFF", "accent_color": "#519ABA"},
+    "garchomp": {"name": "garchomp", "bg_color": "#4C3F91", "button_color": "#E15F41", "text_color": "#FFFFFF", "accent_color": "#FDB833"},
+    "venusaur": {"name": "venusaur", "bg_color": "#9BCCB7", "button_color": "#E06D6D", "text_color": "#2A3B36", "accent_color": "#71B48D"},
 }
 
 

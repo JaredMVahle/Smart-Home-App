@@ -11,14 +11,13 @@
             height: "48dp"
 
             MDLabel:
-                text: "📸 Memories"
-                font_style: "H5"
-                halign: "left"
+                text: "Hello"
                 theme_text_color: "Custom"
                 text_color: app.text_color
+                color: self.text_color
 
             MDIconButton:
-                icon: "arrow-left"
+                icon: "home"
                 pos_hint: {"center_y": 0.5}
                 icon_color: app.accent_color
                 on_release: app.switch_screen("home")
@@ -28,5 +27,6 @@
             halign: "center"
             theme_text_color: "Custom"
             text_color: app.text_color
+            color: self.text_color
 
         Widget:
