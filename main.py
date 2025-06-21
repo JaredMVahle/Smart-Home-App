@@ -1,102 +1,87 @@
+# Imports section
+import os
+
 from kivymd.app import MDApp
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager
-from kivy.utils import get_color_from_hex
+from kivy.properties import ColorProperty
 
-# Import screen logic
+from utils.theme_utils import apply_theme_to_app
+from utils.log_utils import debug_log, clean_old_logs
+from utils.file_utils import load_json, get_app_data_path
+
+from screens.settings.settings_screen import THEMES, SettingsScreen
 from screens.home.home_screen import HomeScreen
-from screens.settings.settings_screen import SettingsScreen
 from screens.alarm.alarm_screen import AlarmScreen
 from screens.memories.memories_screen import MemoriesScreen
 from screens.notes.notes_screen import NotesScreen
+from screens.lights.lights_screen import LightsScreen
 
+from utils.file_utils import LOG_DIR, PREFS_PATH
+
+# Logs stored locally in project
+os.makedirs(LOG_DIR, exist_ok=True)
+
+# Function/Class Section
 class TouchUIApp(MDApp):
+    bg_color = ColorProperty()
+    button_color = ColorProperty()
+    text_color = ColorProperty()
+    accent_color = ColorProperty()
+    current_theme_name = "default"
+
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.theme_selected = "bluegray"
-        self.set_theme(self.theme_selected)
+        pref_path = get_app_data_path("user_prefs.json")
+        prefs = load_json(PREFS_PATH, fallback={})
+        theme_name = prefs.get("theme", "default")
+        theme = THEMES.get(theme_name, THEMES["default"])
+        apply_theme_to_app(self, theme)
 
     def build(self):
-        # Load all .kv files from subfolders
-        Builder.load_file("screens/home/home_screen.kv")
-        Builder.load_file("screens/settings/settings_screen.kv")
-        Builder.load_file("screens/alarm/alarm_screen.kv")
-        Builder.load_file("screens/memories/memories_screen.kv")
-        Builder.load_file("screens/notes/notes_screen.kv")
+        try:
+            clean_old_logs(LOG_DIR, max_age_days=7)
 
-        sm = ScreenManager()
-        sm.add_widget(HomeScreen(name="home"))
-        sm.add_widget(SettingsScreen(name="settings"))
-        sm.add_widget(AlarmScreen(name="alarm"))
-        sm.add_widget(MemoriesScreen(name="memories"))
-        sm.add_widget(NotesScreen(name="notes"))
-        return sm
+            base_dir = os.path.dirname(__file__)
+            debug_log("[BUILD] Loading KV files")
+
+            Builder.load_file(os.path.join(base_dir, "screens/home/home_screen.kv"))
+            Builder.load_file(os.path.join(base_dir, "screens/settings/settings_screen.kv"))
+            Builder.load_file(os.path.join(base_dir, "screens/alarm/alarm_screen.kv"))
+            Builder.load_file(os.path.join(base_dir, "screens/memories/memories_screen.kv"))
+            Builder.load_file(os.path.join(base_dir, "screens/notes/notes_screen.kv"))
+            Builder.load_file(os.path.join(base_dir, "screens/lights/lights_screen.kv"))
+
+            debug_log("[BUILD] Initializing screens")
+            self.sm = ScreenManager()
+            self.sm.add_widget(HomeScreen(name="home"))
+            self.sm.add_widget(SettingsScreen(name="settings"))
+            self.sm.add_widget(AlarmScreen(name="alarm"))
+            self.sm.add_widget(MemoriesScreen(name="memories"))
+            self.sm.add_widget(NotesScreen(name="notes"))
+            self.sm.add_widget(LightsScreen(name="lights"))
+
+            debug_log("[BUILD] Build complete, returning root")
+            return self.sm
+
+        except Exception as e:
+            import traceback
+            print("[FATAL BUILD ERROR]")
+            traceback.print_exc()
+            return None
 
     def switch_screen(self, name):
+        debug_log(f"Switching screen to: {name}")
         self.root.current = name
 
-    def set_theme(self, theme):
-        self.theme_selected = theme
+    def set_theme_direct(self, theme: dict, *args):
+        debug_log(f"Applying theme: {theme.get('name', 'unknown')}")
+        apply_theme_to_app(self, theme)
+        self.update_screen_colors()
 
-        if theme == "light":
-            self.bg_color = get_color_from_hex("#FFFFFF")
-            self.button_color = get_color_from_hex("#4CAF50")
-            self.text_color = get_color_from_hex("#222222")
-            self.accent_color = get_color_from_hex("#2196F3")
-
-        elif theme == "dark":
-            self.bg_color = get_color_from_hex("#212121")
-            self.button_color = get_color_from_hex("#424242")
-            self.text_color = get_color_from_hex("#FAFAFA")
-            self.accent_color = get_color_from_hex("#64FFDA")
-
-        elif theme == "theme2":
-            # Umbrion Color Pallet
-            self.bg_color = get_color_from_hex("#2F323F")    # Background / Primary
-            self.button_color = get_color_from_hex("#64647C")  # Button / Secondary
-            self.text_color = get_color_from_hex("#FAFAFA")  # High contrast text
-            self.accent_color = get_color_from_hex("#C49F3B")  # Accent (gold)
-
-
-        elif theme == "theme3":
-            # Warm Terracotta Color Pallet 
-            #D4272C
-            self.bg_color = get_color_from_hex("#cc92c7")    # Pink
-            self.button_color = get_color_from_hex("#4cdcc4")  # Teal
-            self.text_color = get_color_from_hex("#49454e")  # Greyish
-            self.accent_color = get_color_from_hex("#D4272C")  # Redish
-
-        elif theme == "theme4":
-            # Cool Ocean Breeze Color Pallet
-            self.bg_color = get_color_from_hex("#E0F7F4")    # Background / Primary
-            self.button_color = get_color_from_hex("#4CB5AB")  # Button / Secondary
-            self.text_color = get_color_from_hex("#2E8C89")  # High contrast text
-            self.accent_color = get_color_from_hex("#1C1F1E")  # Accent (gold)
-
-        elif theme == "theme5":
-            # Modern Monochrome Color Pallet
-            self.bg_color = get_color_from_hex("#1E1E1E")    # Background / Primary
-            self.button_color = get_color_from_hex("#3C3C3C")  # Button / Secondary
-            self.text_color = get_color_from_hex("#00BFFF")  # High contrast text
-            self.accent_color = get_color_from_hex("#FFFFFF")  # Accent (gold)
-
-        else:  # default: bluegray
-            self.bg_color = get_color_from_hex("#F0F4F8")
-            self.button_color = get_color_from_hex("#3B6978")
-            self.text_color = get_color_from_hex("#1E2022")
-            self.accent_color = get_color_from_hex("#00BFFF")
-
-
-        # Hot reload screens with theme applied
+    def update_screen_colors(self):
+        debug_log("Propagating theme updates to all screens")
         if self.root:
-            current_screen = self.root.current
-            self.root.clear_widgets()
-            self.root.add_widget(HomeScreen(name="home"))
-            self.root.add_widget(SettingsScreen(name="settings"))
-            self.root.add_widget(AlarmScreen(name="alarm"))
-            self.root.add_widget(MemoriesScreen(name="memories"))
-            self.root.add_widget(NotesScreen(name="notes"))
-            self.root.current = current_screen
-
-if __name__ == "__main__":
-    TouchUIApp().run()
+            for screen in self.root.screens:
+                if hasattr(screen, "update_colors") and callable(screen.update_colors):
+                    screen.update_colors()

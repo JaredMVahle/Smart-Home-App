@@ -7,14 +7,19 @@
 ## 🚀 Features
 
 - 🏠 **Home Screen**: Central navigation hub
+- **Security**: Connect to IP cameras or Ring for live feeds
+- **Weather**: Fetch current conditions based on home location (shown on Home Screen)
+- **Journaling**: Daily logging feature with NLP sentiment analysis for mood detection
 - ⚙️ **Settings Screen**: Supports dynamic theme switching with 6 built-in palettes
 - ⏰ **Alarm Module**: Framework to schedule and display alarms
 - 📝 **Notes Module**: Create and manage simple text notes
 - 📸 **Memories Module**: Placeholder for media/gallery integration
 - 🎨 **Custom Themes**: Choose from Light, Dark, Umbrion, Terracotta, Ocean Breeze, and Monochrome
 - 📱 **Touchscreen Optimized**: Designed with material components and full-screen layouts
-
----
+- **Package Tracker**: View real-time delivery info for incoming packages
+- **Smart Timers**: Add quick-start timers for laundry, sleep reminders, etc.
+- **Network Scanner**: Show currently connected devices and basic diagnostics in Settings
+- **Lighting**: Smoother per-room management with fade options and easy save
 
 ## 🧠 Architecture Overview
 
